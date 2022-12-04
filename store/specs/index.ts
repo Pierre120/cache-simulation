@@ -3,7 +3,7 @@ import { SpecsState } from './types';
 
 const state = (): SpecsState => ({
   blockSize: 0,
-  mainmemory: {
+  mainMemory: {
     size: {
       value: 0,
       unit: "Blocks",
@@ -17,18 +17,18 @@ const state = (): SpecsState => ({
     },
     accessTime: 0,
   },
-  readType: "Non-Load Through",
+  readMode: "Non-Load Through",
 });
 
 const getters = {
   getMainMemoryNumBlocks: (state: SpecsState): number => {
-    if(state.mainmemory.size.unit === "Words")
-      return Math.floor(state.mainmemory.size.value / state.blockSize);
+    if(state.mainMemory.size.unit === "Words")
+      return Math.floor(state.mainMemory.size.value / state.blockSize);
     
-    return state.mainmemory.size.value;
+    return state.mainMemory.size.value;
   },
   getCacheNumBlocks: (state: SpecsState): number => {
-    if(state.mainmemory.size.unit === "Words")
+    if(state.mainMemory.size.unit === "Words")
       return Math.floor(state.cache.size.value / state.blockSize);
     
     return state.cache.size.value;
