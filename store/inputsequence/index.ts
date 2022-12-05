@@ -3,9 +3,9 @@ import { InputSequenceState } from './types';
 
 const state = (): InputSequenceState => ({
   pass: 1,
-  values: null,
+  values: [],
 });
 
-export const useSpecsStore = defineStore('specsStore', {
+export const useInputSeqStore = defineStore('inputSeqStore', {
   state,
 });

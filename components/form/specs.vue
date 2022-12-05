@@ -36,7 +36,12 @@
               v-model:read="readModel"
             />
             <div class="form-control mt-6">
-              <button class="btn btn-primary">Next</button>
+              <button
+                class="btn btn-primary"
+                @click="saveSpecs"
+              >
+                Next
+              </button>
             </div>
           </div>
         </div>
@@ -66,6 +71,7 @@
     (e: 'update:cacheUnit', unit: string): void;
     (e: 'update:cacheAccessTime', time: number): void;
     (e: 'update:readMode', mode: string): void;
+    (e: 'saveSpecs'): void;
   }>();
 
   const blockModel = computed({
@@ -106,7 +112,7 @@
 
   const cacheSizeModel = computed({
     get() {
-      return props.mmSize;
+      return props.cacheSize;
     },
     set(newSize) {
       emit('update:cacheSize', newSize);
@@ -115,7 +121,7 @@
 
   const cacheUnitModel = computed({
     get() {
-      return props.mmUnit;
+      return props.cacheUnit;
     },
     set(newUnit) {
       emit('update:cacheUnit', newUnit);
@@ -124,7 +130,7 @@
 
   const cacheATModel = computed({
     get() {
-      return props.mmAccessTime;
+      return props.cacheAccessTime;
     },
     set(newTime) {
       emit('update:cacheAccessTime', newTime);
@@ -140,5 +146,5 @@
     }
   });
 
-  const placeholder = 'hello';
+  const saveSpecs = () => emit('saveSpecs');
 </script>
