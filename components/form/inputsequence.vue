@@ -4,7 +4,7 @@
       <div class="hero-content">
         <div class="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100">
           <div class="card-body">
-            <h2 class="card-title">Input Sequence</h2>
+            <h2 class="card-title tracking-widest font-bold text-4xl px-4">INPUT SEQUENCE</h2>
             <custom-input
               type="input-sequence"
               v-model:seq="seqModel"

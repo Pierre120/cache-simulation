@@ -73,13 +73,13 @@
 
     <div v-if="type === 'input-sequence'" class="form-control">
       <label class="label">
-        <span class="label-text">Enter input sequence</span>
+        <span class="label-text italic font-bold">Enter input sequence</span>
       </label>
       <label class="input-group">
-        <span>Input Sequence</span>
+        <span class="w-2/5">Input Sequence</span>
         <input
           type="text"
-          class="input input-bordered"
+          class="input input-bordered w-3/5"
           v-model="seqValue"
         />
       </label>
@@ -87,13 +87,13 @@
 
     <div v-if="type === 'pass-count'" class="form-control">
       <label class="label">
-        <span class="label-text">Enter number of pass</span>
+        <span class="label-text italic font-bold">Enter number of pass</span>
       </label>
       <label class="input-group">
-        <span>Pass</span>
+        <span class="w-2/5">Pass</span>
         <input
           type="number"
-          class="input input-bordered"
+          class="input input-bordered w-3/5"
           v-model="numValue"
         />
       </label>
