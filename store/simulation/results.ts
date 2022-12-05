@@ -45,25 +45,43 @@ export const useSimulResultStore = defineStore('simulResults', {
     incrementMiss() {
       this.cacheMiss++;
     },
-    computeMissPenalty(blockSize: number, mmAT: number, cacheAT: number) {
+    computeMissPenalty(blockSize: number, mmAT: number, cacheAT: number, readMode: String) {
       // TODO:
       // Compute miss penalty given the params and store the result
       // in `this.missPenalty`. Add or remove params as needed. 
+      
+      // initial cache check
+      this.missPenalty++;
+      // transfer
+      this.missPenalty += blockSize * mmAT;
+      // cache read
+      if(readMode == "Non-Load Through"){ //added readMode param
+        this.missPenalty++;
+      }
     },
     computeAvgAccessTime(mmAT: number, cacheAT: number) {
       // TODO:
       // Compute average accesss time and store the result in
       // `this.avgAccessTime`. Add or remove params as needed.
+      var d = this.cacheHits + this.cacheMiss;
+      
+      this.avgAccessTime = this.cacheHits / d * cacheAT + this.cacheMiss / d * mmAT;
     },
     computeTotalAccessTime(
       blockSize: number,
-      mainMemory: Memory,
+      //mainMemory: Memory,
       mmAT: number,
-      cache: Memory,
+      //cache: Memory,
       cacheAT: number) {
       // TODO:
       // Compute total access time and store the result in
       // `this.totalAccessTime`. Add or remove params as needed.
+
+      var a = this.cacheHits * blockSize
+      var b = (cacheAT + this.cacheAT * 2) * (mmAT + cacheAT);
+      var c = this.cacheMiss * cacheAT;
+
+      this.totalAccessTime = a + b + c;
     },
     simulateCacheRead() {
       // TODO:
