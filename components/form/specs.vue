@@ -106,7 +106,7 @@
 
   const cacheSizeModel = computed({
     get() {
-      return props.mmSize;
+      return props.cacheSize;
     },
     set(newSize) {
       emit('update:cacheSize', newSize);
@@ -115,7 +115,7 @@
 
   const cacheUnitModel = computed({
     get() {
-      return props.mmUnit;
+      return props.cacheUnit;
     },
     set(newUnit) {
       emit('update:cacheUnit', newUnit);
@@ -124,7 +124,7 @@
 
   const cacheATModel = computed({
     get() {
-      return props.mmAccessTime;
+      return props.cacheAccessTime;
     },
     set(newTime) {
       emit('update:cacheAccessTime', newTime);
