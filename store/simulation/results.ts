@@ -45,7 +45,11 @@ export const useSimulResultStore = defineStore('simulResults', {
     incrementMiss() {
       this.cacheMiss++;
     },
-    computeMissPenalty(blockSize: number, mmAT: number, cacheAT: number, readMode: String) {
+    computeMissPenalty(
+      blockSize: number, 
+      mmAT: number, 
+      //cacheAT: number, 
+      readMode: String) {
       // TODO:
       // Compute miss penalty given the params and store the result
       // in `this.missPenalty`. Add or remove params as needed. 
@@ -83,9 +87,26 @@ export const useSimulResultStore = defineStore('simulResults', {
 
       this.totalAccessTime = a + b + c;
     },
-    simulateCacheRead() {
+    simulateCacheRead(blockSize: number) {
       // TODO:
       // Execute the simulation here.
+      var blocks: number[][] = []; //[number in sequence][age]
+      var j = 0;
+      
+      // Gives age to each of the numbers
+      for(let i = 0; i < numbers in sequence; i++){
+        if(i == 0){
+          blocks.push(number in sequence, i);
+        }
+        else{
+          //check if the value exists in the sequence
+          //if true, change age to i
+          incrementHits();
+          //else, either add to the array if its not full
+          //or replace the youngest age
+          incrementMiss();
+        }
+      }
     }
   },
 })
