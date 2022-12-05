@@ -6,6 +6,6 @@ const state = (): InputSequenceState => ({
   values: [],
 });
 
-export const useSpecsStore = defineStore('specsStore', {
+export const useInputSeqStore = defineStore('inputSeqStore', {
   state,
 });

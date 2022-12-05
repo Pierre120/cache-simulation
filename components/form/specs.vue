@@ -36,7 +36,12 @@
               v-model:read="readModel"
             />
             <div class="form-control mt-6">
-              <button class="btn btn-primary">Next</button>
+              <button
+                class="btn btn-primary"
+                @click="saveSpecs"
+              >
+                Next
+              </button>
             </div>
           </div>
         </div>
@@ -66,6 +71,7 @@
     (e: 'update:cacheUnit', unit: string): void;
     (e: 'update:cacheAccessTime', time: number): void;
     (e: 'update:readMode', mode: string): void;
+    (e: 'saveSpecs'): void;
   }>();
 
   const blockModel = computed({
@@ -140,5 +146,5 @@
     }
   });
 
-  const placeholder = 'hello';
+  const saveSpecs = () => emit('saveSpecs');
 </script>

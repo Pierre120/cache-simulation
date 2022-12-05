@@ -2,7 +2,9 @@
   <div>
     <div class="hero min-h-screen bg-base-200">
       <div class="hero-content">
+        <!-- Specs input form -->
         <form-specs
+          v-if="simulState.$state.isInputSpecs"
           v-model:block-size="specsStore.$state.blockSize"
           v-model:mm-size="specsStore.$state.mainMemory.size.value"
           v-model:mm-unit="specsStore.$state.mainMemory.size.unit"
@@ -11,6 +13,16 @@
           v-model:cache-unit="specsStore.$state.cache.size.unit"
           v-model:cache-access-time="specsStore.$state.cache.accessTime"
           v-model:read-mode="specsStore.$state.readMode"
+          @save-specs="saveSpecs"
+        />
+
+        <!-- Input sequence input form -->
+        <form-inputseqeunce
+          v-if="simulState.$state.isInputSequence"
+          v-model:sequence="inputSeqStore.$state.values"
+          v-model:pass="inputSeqStore.$state.pass"
+          @simulate="simulate"
+          @cancel="cancelSimulation"
         />
       </div>
     </div>
@@ -26,6 +38,33 @@
 </template>
 
 <script lang="ts" setup>
+  import { useSimulStateStore } from '@/store/simulation/state'
   import { useSpecsStore } from '@/store/specs';
+  import { useInputSeqStore } from '@/store/inputsequence'
+
+  const simulState = useSimulStateStore();
   const specsStore = useSpecsStore();
+  const inputSeqStore = useInputSeqStore();
+
+  const saveSpecs = () => {
+    // TODO: Add specsStore state values validation
+
+    // Move to getting the input sequence
+    // when specs is validated
+    simulState.$state.isInputSpecs = false;
+    simulState.$state.isInputSequence = true;
+  };
+
+  const simulate = () => {
+    // Show the simulation component
+    simulState.$state.isInputSequence = false;
+    simulState.$state.isSimulation = true;
+  };
+
+  const cancelSimulation = () => {
+    simulState.$state.isInputSequence = false;
+    simulState.$state.isInputSpecs = true;
+
+    // TODO: reset values of specsStore
+  }
 </script>

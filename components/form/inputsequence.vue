@@ -14,8 +14,12 @@
               v-model:value="passModel"
             />
             <div class="form-control mt-6">
-              <button class="btn btn-primary">Simulate</button>
-              <button class="btn btn-outline">Back</button>
+              <button class="btn btn-primary" @click="simulate">
+                Simulate
+              </button>
+              <button class="btn btn-outline" @click="cancel">
+                Cancel
+              </button>
             </div>
           </div>
         </div>
@@ -34,6 +38,8 @@
     (e: 'update:blockSize', size: number): void;
     (e: 'update:sequence', seq: string[]): void;
     (e: 'update:pass', pass: number): void;
+    (e: 'simulate'): void;
+    (e: 'cancel'): void;
   }>();
 
   const seqModel = computed({
@@ -53,4 +59,7 @@
       emit('update:pass', newPass);
     }
   });
+
+  const simulate = () => emit('simulate');
+  const cancel = () => emit('cancel');
 </script>
