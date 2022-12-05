@@ -2,20 +2,20 @@ import { defineStore } from 'pinia';
 import { SpecsState } from './types';
 
 const state = (): SpecsState => ({
-  blockSize: 0,
+  blockSize: 1,
   mainMemory: {
     size: {
-      value: 0,
+      value: 1,
       unit: "Blocks",
     },
-    accessTime: 0,
+    accessTime: 10,
   },
   cache: {
     size: {
-      value: 0,
+      value: 1,
       unit: "Blocks",
     },
-    accessTime: 0,
+    accessTime: 1,
   },
   readMode: "Non-Load Through",
 });
