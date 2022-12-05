@@ -2,31 +2,31 @@
   <div>
     <div v-if="type === 'block-size'" class="form-control">
       <label class="label">
-        <span class="label-text">Enter block size</span>
+        <span class="label-text italic font-bold">Enter block size</span>
       </label>
       <label class="input-group">
-        <span>Block size</span>
+        <span class = "w-2/5">Block size</span>
         <input
           type="number"
           placeholder="4"
-          class="input input-bordered"
+          class="input input-bordered w-2/5"
           min="1"
           v-model="numValue"
         />
-        <span>Words</span>
+        <span class="w-1/5">Words</span>
       </label>
     </div>
 
     <div v-if="type === 'memory-size'" class="form-control">
       <label class="label">
-        <span class="label-text">Enter memory size</span>
+        <span class="label-text italic font-bold">Enter memory size</span>
       </label>
       <label class="input-group">
-        <span>{{ label }}</span>
+        <span class="w-2/5">{{ label }}</span>
         <input
           type="number"
           placeholder="4"
-          class="input input-bordered"
+          class="input input-bordered w-2/5"
           min="1"
           v-model="numValue"
         />
@@ -42,28 +42,28 @@
 
     <div v-if="type === 'access-time'" class="form-control">
       <label class="label">
-        <span class="label-text">Enter access time</span>
+        <span class="label-text italic font-bold">Enter access time</span>
       </label>
       <label class="input-group">
-        <span>{{ label }}</span>
+        <span class="w-2/5">{{ label }}</span>
         <input
           type="number"
           placeholder="10"
-          class="input input-bordered"
+          class="input input-bordered w-2/5"
           min="1"
           v-model="numValue"
         />
-        <span>ns</span>
+        <span class="w-1/5">ns</span>
       </label>
     </div>
 
     <div v-if="type === 'read-type'" class="form-control">
       <label class="label">
-        <span class="label-text">Enter read mode</span>
+        <span class="label-text italic font-bold">Enter read mode</span>
       </label>
       <label class="input-group">
-        <span>Read mode</span>
-        <select v-model="mode" class="select w-full max-w-xs">
+        <span class="w-2/5">Read mode</span>
+        <select v-model="mode" class="select w-3/5 max-w-xs">
           <option disabled selected>Pick mode</option>
           <option value="Load Through">Load Through</option>
           <option value="Non-Load Through">Non-Load Through</option>
