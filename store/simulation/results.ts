@@ -12,25 +12,25 @@ const state = (): SimulationResults => ({
 });
 
 const getters = {
-  getCacheBlocks(state: SimulationResults) {
+  getCacheBlocks: (state: SimulationResults): string[] => {
     return state.cacheBlocks;
   },
-  getCacheBlocksAsString(state: SimulationResults) {
+  getCacheBlocksAsString: (state: SimulationResults): string => {
     return state.cacheBlocks.join(',');
   },
-  getCacheHits(state: SimulationResults) {
+  getCacheHits: (state: SimulationResults): number => {
     return state.cacheHits;
   },
-  getCacheMiss(state: SimulationResults) {
+  getCacheMiss: (state: SimulationResults): number => {
     return state.cacheMiss;
   },
-  getMissPenalty(state: SimulationResults) {
+  getMissPenalty: (state: SimulationResults): number => {
     return state.missPenalty;
   },
-  getAvgAccessTime(state: SimulationResults) {
+  getAvgAccessTime: (state: SimulationResults): number => {
     return state.avgAccessTime;
   },
-  getTotalAccessTime(state: SimulationResults) {
+  getTotalAccessTime: (state: SimulationResults): number => {
     return state.totalAccessTime;
   }
 };
