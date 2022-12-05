@@ -17,7 +17,7 @@
         />
 
         <!-- Input sequence input form -->
-        <form-inputseqeunce
+        <form-inputsequence
           v-if="simulState.$state.isInputSequence"
           v-model:sequence="inputSeqStore.$state.values"
           v-model:pass="inputSeqStore.$state.pass"
@@ -33,6 +33,8 @@
       Cache Size - Unit: {{ specsStore.cache.size.value }} - {{ specsStore.cache.size.unit }} <br>
       Cache Access Time: {{ specsStore.cache.accessTime }} <br>
       Read Mode: {{ specsStore.readMode }} <br>
+      Sequence: {{ inputSeqStore.values.join(',') }} <br>
+      Pass: {{ inputSeqStore.pass }} <br>
     </p>
   </div>
 </template>

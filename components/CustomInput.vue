@@ -159,7 +159,11 @@
       return (props.seq as string[]).join(',');
     },
     set(newSeq: string) {
-      emit('update:seq', newSeq.split(','));
+      const seqArr = newSeq.split(',');
+      seqArr.forEach((elem, index) => {
+        seqArr[index] = elem.trim();
+      })
+      emit('update:seq', seqArr);
     }
   });
 </script>

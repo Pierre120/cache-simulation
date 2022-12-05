@@ -14,7 +14,7 @@
               v-model:value="passModel"
             />
             <div class="form-control mt-6">
-              <button class="btn btn-primary" @click="simulate">
+              <button class="btn btn-primary mb-2" @click="simulate">
                 Simulate
               </button>
               <button class="btn btn-outline" @click="cancel">
