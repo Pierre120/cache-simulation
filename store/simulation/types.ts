@@ -1,6 +1,8 @@
 export interface SimulationState {
   isInputSpecs: boolean;
+  isInvalidSpecs: boolean;
   isInputSequence: boolean;
+  isInvalidPass: boolean;
   isSimulation: boolean;
 }
 

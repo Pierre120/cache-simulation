@@ -45,6 +45,15 @@ export const useSimulResultStore = defineStore('simulResults', {
   state,
   getters,
   actions: {
+    resetSimulationResults() {
+      this.cache.blocksAge = [];
+      this.cache.blocksValue = [];
+      this.cacheHits = 0;
+      this.cacheMiss = 0;
+      this.missPenalty = 0;
+      this.avgAccessTime = 0;
+      this.totalAccessTime = 0;
+    },
     initCacheBlocks(numCacheBlocks: number) {
       for(let i = 0; i < numCacheBlocks; i++) {
         this.cache.blocksAge.push(0);

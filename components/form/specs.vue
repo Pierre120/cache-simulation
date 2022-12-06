@@ -2,31 +2,40 @@
   <div class="card flex-shrink-0 w-full max-w-2xl shadow-2xl bg-base-100">
     <div class="card-body">
       <h2 class="card-title tracking-widest font-bold text-4xl px-24">SPECIFICATIONS</h2>
+      <alert
+        v-if="invalidInput"
+        warning-msg="Negative size or time value is invalid!"
+      />
       <custom-input
         type="block-size"
         v-model:value="blockModel"
+        @remove-alert="removeAlert"
       />
       <custom-input
         type="memory-size"
         label="Main Memory Size"
         v-model:value="mmSizeModel"
         v-model:unit="mmUnitModel"
+        @remove-alert="removeAlert"
       />
       <custom-input
         type="access-time"
         label="MM Access Time"
         v-model:value="mmATModel"
+        @remove-alert="removeAlert"
       />
       <custom-input
         type="memory-size"
         label="Cache Size"
         v-model:value="cacheSizeModel"
         v-model:unit="cacheUnitModel"
+        @remove-alert="removeAlert"
       />
       <custom-input
         type="access-time"
         label="Cache Access Time"
         v-model:value="cacheATModel"
+        @remove-alert="removeAlert"
       />
       <custom-input
         type="read-type"
@@ -54,6 +63,7 @@
     cacheUnit: string;
     cacheAccessTime: number;
     readMode: "Load Through" | "Non-Load Through";
+    invalidInput: boolean;
   }>();
 
   const emit = defineEmits<{
@@ -65,6 +75,7 @@
     (e: 'update:cacheUnit', unit: string): void;
     (e: 'update:cacheAccessTime', time: number): void;
     (e: 'update:readMode', mode: string): void;
+    (e: 'removeAlert'): void;
     (e: 'saveSpecs'): void;
   }>();
 
@@ -140,5 +151,6 @@
     }
   });
 
+  const removeAlert = () => emit('removeAlert');
   const saveSpecs = () => emit('saveSpecs');
 </script>
