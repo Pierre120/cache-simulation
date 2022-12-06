@@ -100,6 +100,9 @@
     // Show the simulation component
     simulState.$state.isInputSequence = false;
     simulState.$state.isSimulation = true;
+
+    // perform the simulation
+    simulStore.simulateCacheRead(inputSeqStore.getValues, specsStore.getCacheNumBlocks);
   };
 
   const cancelSimulation = () => {
