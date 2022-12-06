@@ -3,7 +3,10 @@ import { SimulationResults } from './types'
 import { Memory } from '../specs/types'
 
 const state = (): SimulationResults => ({
-  cacheBlocks: [],
+  cache: {
+    blocksAge: [],
+    blocksValue: [],
+  },
   cacheHits: 0,
   cacheMiss: 0,
   missPenalty: 0,
@@ -12,11 +15,14 @@ const state = (): SimulationResults => ({
 });
 
 const getters = {
-  getCacheBlocks: (state: SimulationResults): string[] => {
-    return state.cacheBlocks;
+  getCacheBlockAges: (state: SimulationResults): number[] => {
+    return state.cache.blocksAge;
   },
-  getCacheBlocksAsString: (state: SimulationResults): string => {
-    return state.cacheBlocks.join(',');
+  getCacheBlockValues: (state: SimulationResults): string[] => {
+    return state.cache.blocksValue;
+  },
+  getCacheBlockValuesAsString: (state: SimulationResults): string => {
+    return state.cache.blocksValue.join(',');
   },
   getCacheHits: (state: SimulationResults): number => {
     return state.cacheHits;
@@ -39,6 +45,12 @@ export const useSimulResultStore = defineStore('simulResults', {
   state,
   getters,
   actions: {
+    initCacheBlocks(numCacheBlocks: number) {
+      for(let i = 0; i < numCacheBlocks; i++) {
+        this.cache.blocksAge.push(0);
+        this.cache.blocksValue.push('');
+      }
+    },
     incrementHits() {
       this.cacheHits++;
     },
