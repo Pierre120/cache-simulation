@@ -38,14 +38,6 @@
       </div>
     </div>
     <p class="mt-4">
-      <span class="font-bold text-green-500">Block size: </span>{{ specsStore.blockSize }} <br>
-      <span class="font-bold text-green-500">Main Memory Size & unit: </span> {{ specsStore.mainMemory.size.value }} {{ specsStore.mainMemory.size.unit }} <br>
-      <span class="font-bold text-green-500">Main Memory Access Time: </span>{{ specsStore.mainMemory.accessTime }} <br>
-      <span class="font-bold text-green-500">Cache Size & unit: </span> {{ specsStore.cache.size.value }}  {{ specsStore.cache.size.unit }} <br>
-      <span class="font-bold text-green-500">Cache Access Time: </span>{{ specsStore.cache.accessTime }} <br>
-      <span class="font-bold text-green-500">Read Mode:</span> {{ specsStore.readMode }} <br>
-      <span class="font-bold text-green-500">Sequence: </span>{{ inputSeqStore.values.join(',') }} <br>
-      <span class="font-bold text-green-500">Pass:</span> {{ inputSeqStore.pass }} <br>
       Block size: {{ specsStore.blockSize }} <br>
       Main Memory Size - Unit: {{ specsStore.mainMemory.size.value }} - {{ specsStore.mainMemory.size.unit }} <br>
       Main Memory Access Time: {{ specsStore.mainMemory.accessTime }} <br>
