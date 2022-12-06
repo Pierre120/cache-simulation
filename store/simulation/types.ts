@@ -4,8 +4,13 @@ export interface SimulationState {
   isSimulation: boolean;
 }
 
+export interface Cache {
+  blocksAge: number[];
+  blocksValue: string[];
+}
+
 export interface SimulationResults {
-  cacheBlocks: string[];
+  cache: Cache;
   cacheHits: number;
   cacheMiss: number;
   missPenalty: number;

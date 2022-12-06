@@ -3,7 +3,10 @@ import { SimulationResults } from './types'
 import { Memory } from '../specs/types'
 
 const state = (): SimulationResults => ({
-  cacheBlocks: [],
+  cache: {
+    blocksAge: [],
+    blocksValue: [],
+  },
   cacheHits: 0,
   cacheMiss: 0,
   missPenalty: 0,
@@ -12,25 +15,28 @@ const state = (): SimulationResults => ({
 });
 
 const getters = {
-  getCacheBlocks(state: SimulationResults) {
-    return state.cacheBlocks;
+  getCacheBlockAges: (state: SimulationResults): number[] => {
+    return state.cache.blocksAge;
   },
-  getCacheBlocksAsString(state: SimulationResults) {
-    return state.cacheBlocks.join(',');
+  getCacheBlockValues: (state: SimulationResults): string[] => {
+    return state.cache.blocksValue;
   },
-  getCacheHits(state: SimulationResults) {
+  getCacheBlockValuesAsString: (state: SimulationResults): string => {
+    return state.cache.blocksValue.join(',');
+  },
+  getCacheHits: (state: SimulationResults): number => {
     return state.cacheHits;
   },
-  getCacheMiss(state: SimulationResults) {
+  getCacheMiss: (state: SimulationResults): number => {
     return state.cacheMiss;
   },
-  getMissPenalty(state: SimulationResults) {
+  getMissPenalty: (state: SimulationResults): number => {
     return state.missPenalty;
   },
-  getAvgAccessTime(state: SimulationResults) {
+  getAvgAccessTime: (state: SimulationResults): number => {
     return state.avgAccessTime;
   },
-  getTotalAccessTime(state: SimulationResults) {
+  getTotalAccessTime: (state: SimulationResults): number => {
     return state.totalAccessTime;
   }
 };
@@ -39,6 +45,12 @@ export const useSimulResultStore = defineStore('simulResults', {
   state,
   getters,
   actions: {
+    initCacheBlocks(numCacheBlocks: number) {
+      for(let i = 0; i < numCacheBlocks; i++) {
+        this.cache.blocksAge.push(0);
+        this.cache.blocksValue.push('');
+      }
+    },
     incrementHits() {
       this.cacheHits++;
     },
