@@ -21,4 +21,9 @@ const getters = {
 export const useInputSeqStore = defineStore('inputSeqStore', {
   state,
   getters,
+  actions: {
+    isValidNumPass() {
+      return this.pass >= 1;
+    }
+  },
 });

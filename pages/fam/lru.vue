@@ -76,7 +76,11 @@
   const simulStore = useSimulResultStore();
 
   const saveSpecs = () => {
-    // TODO: Add specsStore state values validation
+    // state values validation
+    if(!specsStore.isValidSpecs()) {
+      // TODO: add alert message for invalid inputs
+      return;
+    }
 
     // Move to getting the input sequence
     // when specs is validated
@@ -85,6 +89,11 @@
   };
 
   const simulate = () => {
+    if(!inputSeqStore.isValidNumPass()) {
+      // TODO: alert message for invalid number of pass
+      return;
+    }
+
     // Initialize cache blocks
     simulStore.initCacheBlocks(specsStore.getCacheNumBlocks);
 
@@ -94,10 +103,12 @@
   };
 
   const cancelSimulation = () => {
+    // reset values of specsStore
+    specsStore.resetSpecsValues();
+
+    // go back to asking the simulation specs
     simulState.$state.isInputSequence = false;
     simulState.$state.isInputSpecs = true;
-
-    // TODO: reset values of specsStore
   }
 
   // -- FOR DEBUGGING PURPOSES
