@@ -75,8 +75,7 @@ export const useSpecsStore = defineStore('specsStore', {
     },
     isValidSpecs() {
       // TODO: validate specs values
-      return
-        this.blockSize >= 1 &&
+      return this.blockSize >= 1 &&
         this.mainMemory.size.value >= 1 &&
         (this.mainMemory.size.unit === 'Blocks' || this.mainMemory.size.unit === 'Words') &&
         this.mainMemory.accessTime >= 1 &&
