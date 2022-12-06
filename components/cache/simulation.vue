@@ -7,11 +7,11 @@
           <cache-table :cache="cache"/>
         </div>
         <div class="2xl:w-96 px-6 basis-2/3">
-          Cache Hits: {{ hits }}<br>
-          Cache Miss: {{ miss }}<br>
-          Miss Penalty: {{ missPenalty }} ns<br>
-          Average Access Time: {{ avgAccessTime }} ns<br>
-          Total Access Time: {{ totalAccessTime }} ns
+          <span class="font-bold text-secondary">Cache Hits:</span> {{ hits }}<br>
+          <span class="font-bold text-secondary">Cache Miss:</span> {{ miss }}<br>
+          <span class="font-bold text-secondary">Miss Penalty:</span>  {{ missPenalty }} ns<br>
+          <span class="font-bold text-secondary">Average Access Time:</span> {{ avgAccessTime }} ns<br>
+          <span class="font-bold text-secondary">Total Access Time:</span> {{ totalAccessTime }} ns
           <div class="form-control mt-6">
             <button class="btn btn-primary mb-2">
               Download as .txt
