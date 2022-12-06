@@ -62,4 +62,28 @@ const getters = {
 export const useSpecsStore = defineStore('specsStore', {
   state,
   getters,
+  actions: {
+    resetSpecsValues() {
+      this.blockSize = 1;
+      this.mainMemory.size.value = 1;
+      this.mainMemory.size.unit = 'Blocks';
+      this.mainMemory.accessTime = 10;
+      this.cache.size.value = 1;
+      this.cache.size.unit = 'Blocks';
+      this.cache.accessTime = 1;
+      this.readMode = 'Non-Load Through';
+    },
+    isValidSpecs() {
+      // TODO: validate specs values
+      return
+        this.blockSize >= 1 &&
+        this.mainMemory.size.value >= 1 &&
+        (this.mainMemory.size.unit === 'Blocks' || this.mainMemory.size.unit === 'Words') &&
+        this.mainMemory.accessTime >= 1 &&
+        this.cache.size.value >= 1 &&
+        (this.cache.size.unit === 'Blocks' || this.cache.size.unit === 'Words') &&
+        this.cache.accessTime >= 1 &&
+        (this.readMode === 'Non-Load Through' || this.readMode === 'Load Through');
+    },
+  },
 });
