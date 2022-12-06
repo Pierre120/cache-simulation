@@ -121,6 +121,8 @@
   const cancelSimulation = () => {
     // reset values of specsStore
     specsStore.resetSpecsValues();
+    // reset values of inputSeqStore
+    inputSeqStore.resetSeqInputValues();
 
     // go back to asking the simulation specs
     simulState.$state.isInputSequence = false;
