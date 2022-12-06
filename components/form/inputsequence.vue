@@ -1,28 +1,22 @@
 <template>
-  <div>
-    <div class="hero min-h-screen bg-base-200">
-      <div class="hero-content">
-        <div class="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100">
-          <div class="card-body">
-            <h2 class="card-title">Input Sequence</h2>
-            <custom-input
-              type="input-sequence"
-              v-model:seq="seqModel"
-            />
-            <custom-input
-              type="pass-count"
-              v-model:value="passModel"
-            />
-            <div class="form-control mt-6">
-              <button class="btn btn-primary mb-2" @click="simulate">
-                Simulate
-              </button>
-              <button class="btn btn-outline" @click="cancel">
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
+  <div class="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100">
+    <div class="card-body">
+      <h2 class="card-title">Input Sequence</h2>
+      <custom-input
+        type="input-sequence"
+        v-model:seq="seqModel"
+      />
+      <custom-input
+        type="pass-count"
+        v-model:value="passModel"
+      />
+      <div class="form-control mt-6">
+        <button class="btn btn-primary mb-2" @click="simulate">
+          Simulate
+        </button>
+        <button class="btn btn-outline" @click="cancel">
+          Cancel
+        </button>
       </div>
     </div>
   </div>
