@@ -103,7 +103,7 @@
   // -- FOR DEBUGGING PURPOSES
   const randCache = () => {
     for(i in simulStore.$state.cache.blocksValue) {
-      simulStore.$state.cache.blocksValue[i] = Math.random();
+      simulStore.$state.cache.blocksValue[i] = '' + Math.random();
     }
   }
 
