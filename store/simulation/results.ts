@@ -105,9 +105,10 @@ export const useSimulResultStore = defineStore('simulResults', {
       var blocks: string[][] = []; //[number in sequence][age]
       
       // Gives age to each of the numbers
-      for(let i = 0; i < numbers in sequence; i++){
+      for(let i = 0; i < sequence.length; i++){
         if(i == 0){
-          blocks.push(number in sequence, i);
+          blocks[i][0] = sequence[i];
+          blocks[i][1] = i.toString();
         }
         else{
           //check if the value exists in the sequence
