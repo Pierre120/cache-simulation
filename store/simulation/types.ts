@@ -2,6 +2,7 @@ export interface SimulationState {
   isInputSpecs: boolean;
   isInputSequence: boolean;
   isSimulation: boolean;
+  isValid: boolean
 }
 
 export interface Cache {

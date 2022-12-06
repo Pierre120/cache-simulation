@@ -5,6 +5,7 @@ const state = (): SimulationState => ({
   isInputSpecs: true,
   isInputSequence: false,
   isSimulation: false,
+  isValid: true,
 });
 
 const getters = {
@@ -17,6 +18,9 @@ const getters = {
   getIsSimulation: (state: SimulationState): boolean => {
     return state.isSimulation;
   },
+  getIsValid: (state: SimulationState): boolean => {
+    return state.isValid;
+  }
 };
 
 export const useSimulStateStore = defineStore('simulState', {
