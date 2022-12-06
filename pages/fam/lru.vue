@@ -103,6 +103,13 @@
 
     // perform the simulation
     simulStore.simulateCacheRead(inputSeqStore.getValues, specsStore.getCacheNumBlocks);
+
+    // TODO: Compute miss penalty by passing the correct parameters
+    simulStore.computeMissPenalty();
+    // TODO: Compute average access time by passing the correct parameters
+    simulStore.computeAvgAccessTime();
+    // TODO: Compute total access time by passing the correct parameters
+    simulStore.computeTotalAccessTime();
   };
 
   const cancelSimulation = () => {

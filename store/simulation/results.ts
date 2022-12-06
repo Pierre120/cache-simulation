@@ -103,8 +103,17 @@ export const useSimulResultStore = defineStore('simulResults', {
       // TODO:
       // Execute the simulation here.
       var blocks: string[][] = []; //[number in sequence][age]
+      // Comment:
+      // Use `this.cache` property insteadf.
+      // - `this.cache.blocksAge` for the age of each cache block
+      // - `this.cache.blocksValue` for the data in each cache block
+
+      // Additionals: you can use timeouts to slow down the operation
+      // making it very visual to the user what is happening.
+      // This is only an additional feature but not a requirement
       
       // Gives age to each of the numbers
+      // for(const index in sequence) // indeces - in; of - values
       for(let i = 0; i < numbers in sequence; i++){
         if(i == 0){
           blocks.push(number in sequence, i);
@@ -115,7 +124,7 @@ export const useSimulResultStore = defineStore('simulResults', {
             // number is in block
             if(blocks[j][0] == sequence[i]){
               blocks[j][1] = i.toString();
-              incrementHits();
+              this.incrementHits();
             }
             // number isn't in block
             else{
@@ -135,7 +144,7 @@ export const useSimulResultStore = defineStore('simulResults', {
                   }
                 }
               }
-              incrementMiss();
+              this.incrementMiss();
             }
           }
         }
