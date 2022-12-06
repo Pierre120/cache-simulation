@@ -2,7 +2,7 @@
   <div>
     <div v-if="type === 'block-size'" class="form-control">
       <label class="label">
-        <span class="label-text italic font-bold">Enter block size</span>
+        <span class="label-text italic font-bold text-secondary">Enter block size</span>
       </label>
       <label class="input-group">
         <span class = "w-2/5">Block size</span>
@@ -13,20 +13,20 @@
           min="1"
           v-model="numValue"
         />
-        <span class="w-1/5">Words</span>
+        <span class="w-1/5 pr-28">Words</span>
       </label>
     </div>
 
     <div v-if="type === 'memory-size'" class="form-control">
       <label class="label">
-        <span class="label-text italic font-bold">Enter memory size</span>
+        <span class="label-text italic font-bold text-secondary">Enter memory size</span>
       </label>
       <label class="input-group">
         <span class="w-2/5">{{ label }}</span>
         <input
           type="number"
           placeholder="4"
-          class="input input-bordered w-2/5"
+          class="input input-bordered w-2/5 "
           min="1"
           v-model="numValue"
         />
@@ -42,7 +42,7 @@
 
     <div v-if="type === 'access-time'" class="form-control">
       <label class="label">
-        <span class="label-text italic font-bold">Enter access time</span>
+        <span class="label-text italic font-bold text-secondary">Enter access time</span>
       </label>
       <label class="input-group">
         <span class="w-2/5">{{ label }}</span>
@@ -53,13 +53,13 @@
           min="1"
           v-model="numValue"
         />
-        <span class="w-1/5">ns</span>
+        <span class="w-1/5 pr-28">ns</span>
       </label>
     </div>
 
     <div v-if="type === 'read-type'" class="form-control">
       <label class="label">
-        <span class="label-text italic font-bold">Enter read mode</span>
+        <span class="label-text italic font-bold text-secondary">Enter read mode</span>
       </label>
       <label class="input-group">
         <span class="w-2/5">Read mode</span>
@@ -73,7 +73,7 @@
 
     <div v-if="type === 'input-sequence'" class="form-control">
       <label class="label">
-        <span class="label-text italic font-bold">Enter input sequence</span>
+        <span class="label-text italic font-bold text-secondary">Enter input sequence</span>
       </label>
       <label class="input-group">
         <span class="w-2/5">Input Sequence</span>
@@ -87,7 +87,7 @@
 
     <div v-if="type === 'pass-count'" class="form-control">
       <label class="label">
-        <span class="label-text italic font-bold">Enter number of pass</span>
+        <span class="label-text italic font-bold text-secondary">Enter number of pass</span>
       </label>
       <label class="input-group">
         <span class="w-2/5">Pass</span>

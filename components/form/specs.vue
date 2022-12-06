@@ -2,9 +2,9 @@
   <div>
     <div class="hero min-h-screen bg-base-200">
       <div class="hero-content">
-        <div class="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100">
+        <div class="card flex-shrink-0 w-full max-w-xl shadow-2xl bg-base-100">
           <div class="card-body">
-            <h2 class="card-title tracking-widest font-bold text-4xl px-8">SPECIFICATIONS</h2>
+            <h2 class="card-title tracking-widest font-bold text-4xl px-24">SPECIFICATIONS</h2>
             <custom-input
               type="block-size"
               v-model:value="blockModel"
