@@ -46,7 +46,7 @@
       Read Mode: {{ specsStore.readMode }} <br>
       Sequence: {{ inputSeqStore.getValuesAsString }} <br>
       Pass: {{ inputSeqStore.pass }} <br>
-      Cache num blocks: {{ simulStore.getCacheBlockValues.length }}
+      Cache num blocks: {{ simulStore.getCacheBlockValues.length }} <br>
       Cache block ages: {{ simulStore.getCacheBlockAges.join(',') }} <br>
       Cache block data: {{ simulStore.getCacheBlockValuesAsString }} <br>
       Cache Hits: {{ simulStore.getCacheHits }} <br>
@@ -55,12 +55,12 @@
       Average Access Time: {{ simulStore.getAvgAccessTime }} <br>
       Total Access Time: {{ simulStore.getTotalAccessTime }} <br>
     </p>
-    <button @click="randCache">Randomize cache data</button>
-    <button @click="simulStore.incrementHits">Inc Cache Hits</button>
-    <button @click="simulStore.incrementMiss">Inc Cache Miss</button>
-    <button @click="randPenalty">Cache Miss Penalty</button>
-    <button @click="randAvg">Randomize Avg AT</button>
-    <button @click="randTotal">Randomize Total AT</button>
+    <button @click="randCache" class="btn">Randomize cache data</button>
+    <button @click="simulStore.incrementHits" class="btn">Inc Cache Hits</button>
+    <button @click="simulStore.incrementMiss" class="btn">Inc Cache Miss</button>
+    <button @click="randPenalty" class="btn">Cache Miss Penalty</button>
+    <button @click="randAvg" class="btn">Randomize Avg AT</button>
+    <button @click="randTotal" class="btn">Randomize Total AT</button>
   </div>
 </template>
 
@@ -102,9 +102,9 @@
 
   // -- FOR DEBUGGING PURPOSES
   const randCache = () => {
-    for(i in simulStore.$state.cache.blocksValue) {
+    for(let i in simulStore.$state.cache.blocksValue) {
       console.log(i);
-      simulStore.$state.cache.blocksValue[i] = '' + Math.random();
+      simulStore.$state.cache.blocksValue[i] = `${Math.random()}`;
     }
   }
 
