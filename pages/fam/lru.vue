@@ -24,18 +24,18 @@
           @simulate="simulate"
           @cancel="cancelSimulation"
         />
-      </div>
 
-      <!-- Live Simulation -->
-      <cache-simulation
-        v-if="simulState.$state.isSimulation"
-        :cache="simulStore.$state.cache"
-        :hits="simulStore.$state.cacheHits"
-        :miss="simulStore.$state.cacheMiss"
-        :missPenalty="simulStore.$state.missPenalty"
-        :avgAccessTime="simulStore.$state.avgAccessTime"
-        :totalAccessTime="simulStore.$state.totalAccessTime"
-      />
+        <!-- Live Simulation -->
+        <cache-simulation
+          v-if="simulState.$state.isSimulation"
+          :cache="simulStore.$state.cache"
+          :hits="simulStore.$state.cacheHits"
+          :miss="simulStore.$state.cacheMiss"
+          :missPenalty="simulStore.$state.missPenalty"
+          :avgAccessTime="simulStore.$state.avgAccessTime"
+          :totalAccessTime="simulStore.$state.totalAccessTime"
+        />
+      </div>
     </div>
     <p class="mt-4">
       Block size: {{ specsStore.blockSize }} <br>
