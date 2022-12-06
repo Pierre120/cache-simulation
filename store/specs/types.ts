@@ -12,7 +12,7 @@ export interface Memory {
 
 export interface SpecsState {
   blockSize: number; // block size in words measurement unit
-  mainmemory: Memory;
+  mainMemory: Memory;
   cache: Memory;
-  readType: "Load Through" | "Non-Load Through";
+  readMode: "Load Through" | "Non-Load Through";
 }

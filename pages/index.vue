@@ -8,7 +8,7 @@
             In full associative mapping, all main memory blocks can be 
             mapped onto any cache block.
           </p>
-          <NuxtLink to="/fam-lru">
+          <NuxtLink to="/fam/lru">
             <button class="btn btn-primary">Start Simulation</button>
           </NuxtLink>
           <h6 class="py-6 italic text-xs">
