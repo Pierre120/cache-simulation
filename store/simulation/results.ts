@@ -99,11 +99,10 @@ export const useSimulResultStore = defineStore('simulResults', {
 
       this.totalAccessTime = a + b + c;
     },
-    simulateCacheRead(blockSize: number) {
+    simulateCacheRead(sequence: string[], blockSize: number) {
       // TODO:
       // Execute the simulation here.
-      var blocks: number[][] = []; //[number in sequence][age]
-      var j = 0;
+      var blocks: string[][] = []; //[number in sequence][age]
       
       // Gives age to each of the numbers
       for(let i = 0; i < numbers in sequence; i++){
@@ -112,11 +111,33 @@ export const useSimulResultStore = defineStore('simulResults', {
         }
         else{
           //check if the value exists in the sequence
-          //if true, change age to i
-          incrementHits();
-          //else, either add to the array if its not full
-          //or replace the youngest age
-          incrementMiss();
+          for(let j = 0; j < blockSize; j++){
+            // number is in block
+            if(blocks[j][0] == sequence[i]){
+              blocks[j][1] = i.toString();
+              incrementHits();
+            }
+            // number isn't in block
+            else{
+              // if block isn't full
+              for(let k = 0; k < blockSize; k++){
+                if(blocks[j][0] == null){
+                  blocks[j][0] = sequence[i];
+                  blocks[j][1] = i.toString();
+                }
+                else{
+                  for(let l = 0; l < blockSize; l++){
+                    var age = i-4;
+                    if(blocks[j][1] == age.toString()){
+                      blocks[j][0] = sequence[i];
+                      blocks[j][1] = i.toString();
+                    }
+                  }
+                }
+              }
+              incrementMiss();
+            }
+          }
         }
       }
     }
