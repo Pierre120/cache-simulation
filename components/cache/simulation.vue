@@ -13,10 +13,16 @@
           <span class="font-bold text-secondary">Average Access Time:</span> {{ avgAccessTime }} ns<br>
           <span class="font-bold text-secondary">Total Access Time:</span> {{ totalAccessTime }} ns
           <div class="form-control mt-6">
-            <button class="btn btn-primary mb-2">
+            <button
+              class="btn btn-primary mb-2"
+              @click="downloadText"
+            >
               Download as .txt
             </button>
-            <button class="btn btn-outline">
+            <button
+              class="btn btn-outline"
+              @click="newSimulation"
+            >
               New Simulation
             </button>
           </div>
@@ -37,4 +43,12 @@
     avgAccessTime: number;
     totalAccessTime: number;
   }>();
+
+  const emit = defineEmits<{
+    (e: 'downloadText'): void;
+    (e: 'newSimulation'): void;
+  }>();
+
+  const downloadText = () => emit('downloadText');
+  const newSimulation = () => emit('newSimulation');
 </script>
