@@ -25,6 +25,17 @@
           @cancel="cancelSimulation"
         />
       </div>
+
+      <!-- Live Simulation -->
+      <cache-simlation
+        v-if="simulState.$state.isSimulation"
+        :cache="simulStore.$state.cache"
+        :hits="simulStore.$state.cacheHits"
+        :miss="simulStore.$state.cacheMiss"
+        :missPenalty="simulStore.$state.missPenalty"
+        :avgAccessTime="simulStore.$state.avgAccessTime"
+        :totalAccessTime="simulStore.$state.totalAccessTime"
+      />
     </div>
     <p class="mt-4">
       Block size: {{ specsStore.blockSize }} <br>
@@ -35,7 +46,20 @@
       Read Mode: {{ specsStore.readMode }} <br>
       Sequence: {{ inputSeqStore.getValuesAsString }} <br>
       Pass: {{ inputSeqStore.pass }} <br>
+      Cache block ages: {{ simulStore.getCacheBlockAges.join(',') }} <br>
+      Cache block data: {{ simulStore.getCacheBlockValuesAsString }} <br>
+      Cache Hits: {{ simulStore.getCacheHits }} <br>
+      Cache Miss: {{ simulStore.getCacheMiss }} <br>
+      Cache Miss Penalty: {{ simulStore.getMissPenalty }} <br>
+      Average Access Time: {{ simulStore.getAvgAccessTime }} <br>
+      Total Access Time: {{ simulStore.getTotalAccessTime }} <br>
     </p>
+    <button @click="randCache">Randomize cache data</button>
+    <button @click="simulStore.incrementHits">Inc Cache Hits</button>
+    <button @click="simulStore.incrementMiss">Inc Cache Miss</button>
+    <button @click="randPenalty">Cache Miss Penalty</button>
+    <button @click="randAvg">Randomize Avg AT</button>
+    <button @click="randTotal">Randomize Total AT</button>
   </div>
 </template>
 
@@ -73,5 +97,24 @@
     simulState.$state.isInputSpecs = true;
 
     // TODO: reset values of specsStore
+  }
+
+  // -- FOR DEBUGGING PURPOSES
+  const randCache = () => {
+    for(i in simulStore.$state.cache.blocksValue) {
+      simulStore.$state.cache.blocksValue[i] = Math.random();
+    }
+  }
+
+  const randPenalty = () => {
+    simulStore.$state.missPenalty = Math.random();
+  }
+
+  const randAvg = () => {
+    simulStore.$state.avgAccessTime = Math.random();
+  }
+
+  const randTotal = () => {
+    simulStore.$state.totalAccessTime = Math.random();
   }
 </script>
