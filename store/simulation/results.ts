@@ -93,8 +93,8 @@ export const useSimulResultStore = defineStore('simulResults', {
       // Compute total access time and store the result in
       // `this.totalAccessTime`. Add or remove params as needed.
 
-      var a = this.cacheHits * blockSize
-      var b = (cacheAT + this.cacheAT * 2) * (mmAT + cacheAT);
+      var a = this.cacheHits * blockSize * cacheAT;
+      var b = this.cacheMiss * blockSize * (cacheAT + mmAT);
       var c = this.cacheMiss * cacheAT;
 
       this.totalAccessTime = a + b + c;
