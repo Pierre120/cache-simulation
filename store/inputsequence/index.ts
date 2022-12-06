@@ -22,6 +22,10 @@ export const useInputSeqStore = defineStore('inputSeqStore', {
   state,
   getters,
   actions: {
+    resetSeqInputValues() {
+      this.pass = 1;
+      this.values = [];
+    },
     isValidNumPass() {
       return this.pass >= 1;
     }

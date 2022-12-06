@@ -13,6 +13,8 @@
           v-model:cache-unit="specsStore.$state.cache.size.unit"
           v-model:cache-access-time="specsStore.$state.cache.accessTime"
           v-model:read-mode="specsStore.$state.readMode"
+          :invalid-input="simulState.$state.isInvalidSpecs"
+          @remove-alert="removeInvalidSpecsAlert"
           @save-specs="saveSpecs"
         />
 
@@ -21,6 +23,8 @@
           v-if="simulState.$state.isInputSequence"
           v-model:sequence="inputSeqStore.$state.values"
           v-model:pass="inputSeqStore.$state.pass"
+          :invalid-input="simulState.$state.isInvalidPass"
+          @remove-alert="removeInvalidPassAlert"
           @simulate="simulate"
           @cancel="cancelSimulation"
         />
@@ -75,10 +79,18 @@
   const inputSeqStore = useInputSeqStore();
   const simulStore = useSimulResultStore();
 
+  const removeInvalidSpecsAlert = () => {
+    simulState.$state.isInvalidSpecs = false;
+  };
+
+  const removeInvalidPassAlert = () => {
+    simulState.$state.isInvalidPass = false;
+  };
+
   const saveSpecs = () => {
     // state values validation
-    if(!specsStore.isValidSpecs()) {
-      // TODO: add alert message for invalid inputs
+    simulState.$state.isInvalidSpecs = !specsStore.isValidSpecs();
+    if(simulState.getIsInvalidSpecs) {
       return;
     }
 
@@ -89,8 +101,9 @@
   };
 
   const simulate = () => {
-    if(!inputSeqStore.isValidNumPass()) {
-      // TODO: alert message for invalid number of pass
+    // pass value validation
+    simulState.$state.isInvalidPass = !inputSeqStore.isValidNumPass();
+    if(simulState.getIsInvalidPass) {
       return;
     }
 

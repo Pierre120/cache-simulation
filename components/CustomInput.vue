@@ -8,10 +8,10 @@
         <span class = "w-2/5">Block size</span>
         <input
           type="number"
-          placeholder="4"
           class="input input-bordered w-2/5"
           min="1"
           v-model="numValue"
+          @click="removeAlert"
         />
         <span class="w-1/5 pr-28">Words</span>
       </label>
@@ -25,10 +25,10 @@
         <span class="w-2/5">{{ label }}</span>
         <input
           type="number"
-          placeholder="4"
           class="input input-bordered w-2/5 "
           min="1"
           v-model="numValue"
+          @click="removeAlert"
         />
         <span>
           <select v-model="unitValue" class="select w-full max-w-xs">
@@ -48,10 +48,10 @@
         <span class="w-2/5">{{ label }}</span>
         <input
           type="number"
-          placeholder="10"
           class="input input-bordered w-2/5"
           min="1"
           v-model="numValue"
+          @click="removeAlert"
         />
         <span class="w-1/5 pr-28">ns</span>
       </label>
@@ -81,6 +81,7 @@
           type="text"
           class="input input-bordered w-3/5"
           v-model="seqValue"
+          @click="removeAlert"
         />
       </label>
     </div>
@@ -95,6 +96,7 @@
           type="number"
           class="input input-bordered w-3/5"
           v-model="numValue"
+          @click="removeAlert"
         />
       </label>
     </div>
@@ -118,6 +120,7 @@
     (e: 'update:unit', unit: string): void;
     (e: 'update:read', read: string): void;
     (e: 'update:seq', seq: string[]): void;
+    (e: 'removeAlert'): void;
   }>();
 
   const numValue = computed({
@@ -168,4 +171,6 @@
       emit('update:seq', seqArr);
     }
   });
+
+  const removeAlert = () => emit('removeAlert');
 </script>
