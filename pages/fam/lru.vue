@@ -43,10 +43,12 @@
   import { useSimulStateStore } from '@/store/simulation/state'
   import { useSpecsStore } from '@/store/specs';
   import { useInputSeqStore } from '@/store/inputsequence'
+  import { useSimulResultStore } from '@/store/simulation/results'
 
   const simulState = useSimulStateStore();
   const specsStore = useSpecsStore();
   const inputSeqStore = useInputSeqStore();
+  const simulStore = useSimulResultStore();
 
   const saveSpecs = () => {
     // TODO: Add specsStore state values validation
@@ -58,6 +60,9 @@
   };
 
   const simulate = () => {
+    // Initialize cache blocks
+    simulStore.initCacheBlocks(specsStore.getCacheNumBlocks);
+
     // Show the simulation component
     simulState.$state.isInputSequence = false;
     simulState.$state.isSimulation = true;
