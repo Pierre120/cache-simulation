@@ -1,12 +1,12 @@
 <template>
-  <div class="card flex-shrink-0 w-full max-w-lg shadow-2xl bg-base-100">
-    <div class="card-body">
-      <h2 class="card-title">Full Associative Mapping (LRU)</h2>
-      <div class="w-full flex">
-        <div class="w-1/2 p-4">
+  <div class="card flex-shrink-0 w-full max-w-screen-lg shadow-2xl bg-base-100">
+    <div class="card-body w-full">
+      <h2 class="card-title font-bold text-secondary text-4xl px-40 pb-5">FULL ASSOCIATIVE - LRU</h2>
+      <div class="flex">
+        <div class="2xl:w-96 px-6 basis-1/3">
           <cache-table :cache="cache"/>
         </div>
-        <div class="w-1/2 p-4">
+        <div class="2xl:w-96 px-6 basis-2/3">
           Cache Hits: {{ hits }}<br>
           Cache Miss: {{ miss }}<br>
           Miss Penalty: {{ missPenalty }} ns<br>
