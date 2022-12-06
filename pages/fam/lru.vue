@@ -38,6 +38,8 @@
           :missPenalty="simulStore.$state.missPenalty"
           :avgAccessTime="simulStore.$state.avgAccessTime"
           :totalAccessTime="simulStore.$state.totalAccessTime"
+          @download-text="downloadText"
+          @new-simulation="newSimulation"
         />
       </div>
     </div>
@@ -114,6 +116,24 @@
     simulState.$state.isInputSequence = false;
     simulState.$state.isSimulation = true;
 
+    
+    // compute miss penalty
+    simulStore.computeMissPenalty(
+      specsStore.getBlockSize,
+      specsStore.getMainMemoryAccessTime,
+      specsStore.getReadMode
+    );
+    // compute average memory access time
+    simulStore.computeAvgAccessTime(
+      specsStore.getMainMemoryAccessTime,
+      specsStore.getCacheAccessTime
+    );
+    // total average memory access time
+    simulStore.computeTotalAccessTime(
+      specsStore.getBlockSize,
+      specsStore.getMainMemoryAccessTime,
+      specsStore.getCacheAccessTime
+    );
     // perform the simulation
     simulStore.simulateCacheRead(inputSeqStore.getValues, specsStore.getCacheNumBlocks);
   };
@@ -128,6 +148,23 @@
     simulState.$state.isInputSequence = false;
     simulState.$state.isInputSpecs = true;
   }
+
+  const downloadText = () => {
+    let isSuccess = useSaveToTextFile(simulStore.$state);
+    if(!isSuccess) alert('Failed to download cache simulation results.');
+  };
+
+  const newSimulation = () => {
+    // reset values of specsStore
+    specsStore.resetSpecsValues();
+    // reset values of inputSeqStore
+    inputSeqStore.resetSeqInputValues();
+    // reset values of simulStore
+    simulStore.resetSimulationResults();
+
+    simulState.$state.isSimulation = false;
+    simulState.$state.isInputSpecs = true;
+  };
 
   // -- FOR DEBUGGING PURPOSES
   const randCache = () => {

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { SimulationResults } from './types'
-import { Memory } from '../specs/types'
+// import { Memory } from '../specs/types'
 
 const state = (): SimulationResults => ({
   cache: {
