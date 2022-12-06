@@ -27,7 +27,7 @@
       </div>
 
       <!-- Live Simulation -->
-      <cache-simlation
+      <cache-simulation
         v-if="simulState.$state.isSimulation"
         :cache="simulStore.$state.cache"
         :hits="simulStore.$state.cacheHits"
@@ -46,6 +46,7 @@
       Read Mode: {{ specsStore.readMode }} <br>
       Sequence: {{ inputSeqStore.getValuesAsString }} <br>
       Pass: {{ inputSeqStore.pass }} <br>
+      Cache num blocks: {{ simulStore.getCacheBlockValues.length }}
       Cache block ages: {{ simulStore.getCacheBlockAges.join(',') }} <br>
       Cache block data: {{ simulStore.getCacheBlockValuesAsString }} <br>
       Cache Hits: {{ simulStore.getCacheHits }} <br>
