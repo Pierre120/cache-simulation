@@ -116,7 +116,7 @@ export const useSimulResultStore = defineStore('simulResults', {
             // number is in block
             if(blocks[j][0] == sequence[i]){
               blocks[j][1] = i.toString();
-              incrementHits();
+              this.incrementHits();
             }
             // number isn't in block
             else{
@@ -136,7 +136,7 @@ export const useSimulResultStore = defineStore('simulResults', {
                   }
                 }
               }
-              incrementMiss();
+              this.incrementMiss();
             }
           }
         }
