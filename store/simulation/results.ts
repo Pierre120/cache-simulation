@@ -163,7 +163,8 @@ export const useSimulResultStore = defineStore('simulResults', {
             }
             this.incrementMiss();
           }
-        } 
+        }
+        console.log(sequence[i]);
       }
     }
   },
