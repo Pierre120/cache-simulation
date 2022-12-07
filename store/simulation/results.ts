@@ -134,15 +134,18 @@ export const useSimulResultStore = defineStore('simulResults', {
       // making it very visual to the user what is happening.
       // This is only an additional feature but not a requirement
       
+      var numInCache = false;
+
       // Gives age to each of the numbers
       for(let i = 0; i < sequence.length; i++){
         for(let j = 0; j < blockSize; j++){
           // number is in cache
-          if(this.cache.blocksValue[j] == sequence[i]){
+          if(this.cache.blocksValue[j] === sequence[i]){
             this.cache.blocksAge[j] = i;
             this.incrementHits();
+            numInCache = true;
           }
-          else{
+          else if(numInCache == false){
             // first number in sequence
             if(i == 0){
               this.cache.blocksValue[i] = sequence[i];
@@ -167,6 +170,7 @@ export const useSimulResultStore = defineStore('simulResults', {
           }
         }
       }
+      numInCache = false;
     }
   },
 })
