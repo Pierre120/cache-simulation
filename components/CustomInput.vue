@@ -112,14 +112,14 @@
     unit?: string;
     read?: string;
     label?: string;
-    seq?: string[];
+    seq?: string;
   }>();
 
   const emit = defineEmits<{
     (e: 'update:value', value: string | number): void;
     (e: 'update:unit', unit: string): void;
     (e: 'update:read', read: string): void;
-    (e: 'update:seq', seq: string[]): void;
+    (e: 'update:seq', seq: string): void;
     (e: 'removeAlert'): void;
   }>();
 
@@ -161,14 +161,10 @@
 
   const seqValue = computed({
     get() {
-      return (props.seq as string[]).join(',');
+      return props.seq as string;
     },
     set(newSeq: string) {
-      const seqArr = newSeq.split(',');
-      seqArr.forEach((elem, index) => {
-        seqArr[index] = elem.trim();
-      })
-      emit('update:seq', seqArr);
+      emit('update:seq', newSeq.trim());
     }
   });
 

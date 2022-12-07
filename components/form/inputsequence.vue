@@ -4,7 +4,7 @@
       <h2 class="card-title tracking-widest font-bold text-4xl px-4">INPUT SEQUENCE</h2>
       <alert
         v-if="invalidInput"
-        warning-msg="Negative pass value is invalid!"
+        warning-msg="Invalid sequence and/or pass!"
       />
       <custom-input
         type="input-sequence"
@@ -29,14 +29,14 @@
 
 <script lang="ts" setup>
   const props = defineProps<{
-    sequence: string[]
+    sequence: string
     pass: number;
     invalidInput: boolean;
   }>();
 
   const emit = defineEmits<{
     (e: 'update:blockSize', size: number): void;
-    (e: 'update:sequence', seq: string[]): void;
+    (e: 'update:sequence', seq: string): void;
     (e: 'update:pass', pass: number): void;
     (e: 'removeAlert'): void;
     (e: 'simulate'): void;
@@ -48,7 +48,7 @@
       return props.sequence;
     },
     set(newSeq) {
-      emit('update:sequence', newSeq);
+      emit('update:sequence', newSeq as string);
     },
   });
 
