@@ -147,11 +147,13 @@ export const useSimulResultStore = defineStore('simulResults', {
             if(i == 0){
               this.cache.blocksValue[i] = sequence[i];
               this.cache.blocksAge[i] = i;
+              this.incrementMiss();
             }  
             // if block isn't occupied
             else if(this.cache.blocksValue[j] == null){
               this.cache.blocksValue[j] = sequence[i];
               this.cache.blocksAge[j] = i;
+              this.incrementMiss();
             }
             // all blocks are full
             else{
@@ -159,9 +161,9 @@ export const useSimulResultStore = defineStore('simulResults', {
               if(this.cache.blocksAge[j] == age){
                 this.cache.blocksValue[j] = sequence[i];
                 this.cache.blocksAge[j] = i;
+                this.incrementMiss();
               }
             }
-            this.incrementMiss();
           }
         }
       }
