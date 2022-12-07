@@ -71,9 +71,6 @@ export const useSimulResultStore = defineStore('simulResults', {
       mmAT: number, 
       //cacheAT: number, 
       readMode: String) {
-      // TODO:
-      // Compute miss penalty given the params and store the result
-      // in `this.missPenalty`. Add or remove params as needed. 
       
       // initial cache check
       this.missPenalty++;
@@ -85,9 +82,7 @@ export const useSimulResultStore = defineStore('simulResults', {
       }
     },
     computeAvgAccessTime(mmAT: number, cacheAT: number) {
-      // TODO:
-      // Compute average accesss time and store the result in
-      // `this.avgAccessTime`. Add or remove params as needed.
+ 
       var d = this.cacheHits + this.cacheMiss;
       
       this.avgAccessTime = this.cacheHits / d * cacheAT + this.cacheMiss / d * mmAT;
@@ -97,59 +92,48 @@ export const useSimulResultStore = defineStore('simulResults', {
       //mainMemory: Memory,
       mmAT: number,
       //cache: Memory,
-      cacheAT: number) {
-      // TODO:
-      // Compute total access time and store the result in
-      // `this.totalAccessTime`. Add or remove params as needed.
+      cacheAT: number,
+      readMode: string) {
 
-      var a = this.cacheHits * blockSize * cacheAT;
-      var b = this.cacheMiss * blockSize * (cacheAT + mmAT);
-      var c = this.cacheMiss * cacheAT;
-
+      let a = this.cacheHits * blockSize * cacheAT;
+      let c = this.cacheMiss * cacheAT;
+      let b = 0;
+      if (readMode == "Non-Load Through"){
+        b = this.cacheMiss * blockSize * (cacheAT + mmAT);
+      }
+      else{
+        b =this.cacheMiss * blockSize * mmAT;
+      }
+      
       this.totalAccessTime = a + b + c;
     },
-    simulateCacheRead(sequence: string[], blockSize: number) {
-      // TODO:
-      // Execute the simulation here.
-      var blocks: string[][] = []; //[number in sequence][age]
-      
-      // Gives age to each of the numbers
-      for(let i = 0; i < sequence.length; i++){
-        if(i == 0){
-          blocks[i][0] = sequence[i];
-          blocks[i][1] = i.toString();
+    simulateCacheRead(sequence: string[], pass: number, cacheNumBlocks: number) {
+
+      for (let age = 0; age < sequence.length * pass; age++){
+
+        let minIndex = this.cache.blocksValue.indexOf(sequence[age % sequence.length]);
+        if ( minIndex > -1){
+          this.incrementHits();
+          this.cache.blocksAge[minIndex] = age;
         }
         else{
-          //check if the value exists in the sequence
-          for(let j = 0; j < blockSize; j++){
-            // number is in block
-            if(blocks[j][0] == sequence[i]){
-              blocks[j][1] = i.toString();
-              this.incrementHits();
-            }
-            // number isn't in block
-            else{
-              // if block isn't full
-              for(let k = 0; k < blockSize; k++){
-                if(blocks[j][0] == null){
-                  blocks[j][0] = sequence[i];
-                  blocks[j][1] = i.toString();
-                }
-                else{
-                  for(let l = 0; l < blockSize; l++){
-                    var age = i-4;
-                    if(blocks[j][1] == age.toString()){
-                      blocks[j][0] = sequence[i];
-                      blocks[j][1] = i.toString();
-                    }
-                  }
-                }
+          this.incrementMiss();
+          minIndex = this.cache.blocksValue.indexOf("");
+          if (minIndex === -1) {
+            minIndex = 0;
+            for (let j = 1; j < this.cache.blocksAge.length; j++) {
+              if (this.cache.blocksAge[minIndex] > this.cache.blocksAge[j]){
+                minIndex = j;
               }
-              this.incrementMiss();
             }
           }
+          this.cache.blocksValue[minIndex] = sequence[age % sequence.length];
+          this.cache.blocksAge[minIndex] = age;
         }
+          
       }
+      
+
     }
   },
 })
