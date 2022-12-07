@@ -116,7 +116,8 @@
     simulState.$state.isInputSequence = false;
     simulState.$state.isSimulation = true;
 
-    
+    // perform the simulation
+    simulStore.simulateCacheRead(inputSeqStore.getValues, specsStore.getCacheNumBlocks);
     // compute miss penalty
     simulStore.computeMissPenalty(
       specsStore.getBlockSize,
@@ -132,10 +133,9 @@
     simulStore.computeTotalAccessTime(
       specsStore.getBlockSize,
       specsStore.getMainMemoryAccessTime,
-      specsStore.getCacheAccessTime
+      specsStore.getCacheAccessTime,
+      specsStore.getReadMode
     );
-    // perform the simulation
-    simulStore.simulateCacheRead(inputSeqStore.getValues, specsStore.getCacheNumBlocks);
   };
 
   const cancelSimulation = () => {

@@ -18,7 +18,7 @@ export const useSaveToTextFile = (simulationResults: SimulationResults) => {
     // snapshot of cache memory
     results = results + " Block\t\t| Data\n";
     for(let ind in simulationResults.cache.blocksValue) {
-      results = results + ` ${ind}` + "\t\t\t| " + simulationResults.cache.blocksValue[ind] + "\n";
+      results = results + ` ${ind}` + "\t\t| " + simulationResults.cache.blocksValue[ind] + "\n";
     }
 
     // create blob for the result string text

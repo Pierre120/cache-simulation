@@ -97,18 +97,31 @@ export const useSimulResultStore = defineStore('simulResults', {
       //mainMemory: Memory,
       mmAT: number,
       //cache: Memory,
-      cacheAT: number) {
+      cacheAT: number,
+      readMode: string) {
       // TODO:
       // Compute total access time and store the result in
       // `this.totalAccessTime`. Add or remove params as needed.
-
-      var a = this.cacheHits * blockSize * cacheAT;
-      var b = this.cacheMiss * blockSize * (cacheAT + mmAT);
-      var c = this.cacheMiss * cacheAT;
-
+      console.log("Block Size: " + blockSize);
+      console.log("mmAccessTime: " + mmAT);
+      console.log("cacheAccessTime: " + cacheAT);
+      console.log("mmReadMode: " + readMode);
+      let a = this.cacheHits * blockSize * cacheAT;
+      console.log(a);
+      let c = this.cacheMiss * cacheAT;
+      console.log(c);
+      let b = 0;
+      if (readMode == "Non-Load Through"){
+        b = this.cacheMiss * blockSize * (cacheAT + mmAT);
+      }
+      else{
+        b =this.cacheMiss * blockSize * mmAT;
+      }
+      console.log(b);
+      
       this.totalAccessTime = a + b + c;
     },
-    simulateCacheRead(sequence: string[], blockSize: number) {
+    simulateCacheRead(sequence: string[], cacheNumBlocks: number) {
       // TODO:
       // Execute the simulation here.
       // Additionals: you can use timeouts to slow down the operation
@@ -116,7 +129,35 @@ export const useSimulResultStore = defineStore('simulResults', {
       // This is only an additional feature but not a requirement
       
       // Gives age to each of the numbers
-      for(let i = 0; i < sequence.length; i++){
+      // let age = 0; 
+
+      for (let age = 0; age < sequence.length; age++){
+
+        let minIndex = this.cache.blocksValue.indexOf(sequence[age]);
+        if ( minIndex > -1){
+          this.incrementHits();
+          this.cache.blocksAge[minIndex] = age;
+        }
+        else{
+          this.incrementMiss();
+          minIndex = this.cache.blocksValue.indexOf("");
+          if (this.cache.blocksValue[cacheNumBlocks - 1] !== '' ) {
+            minIndex = 0;
+            for (let j = 1; j < this.cache.blocksAge.length; j++) {
+              if (this.cache.blocksAge[minIndex] > this.cache.blocksAge[j]){
+                minIndex = j;
+              }
+            }
+          }
+          this.cache.blocksValue[minIndex] = sequence[age];
+          this.cache.blocksAge[minIndex] = age;
+        }
+          
+      }
+      
+
+
+      /* for(let i = 0; i < sequence.length; i++){
         for(let j = 0; j < blockSize; j++){
           // number is in cache
           if(this.cache.blocksValue[j] == sequence[i]){
@@ -145,7 +186,7 @@ export const useSimulResultStore = defineStore('simulResults', {
             this.incrementMiss();
           }
         } 
-      }
+      } */
     }
   },
 })
