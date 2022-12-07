@@ -111,44 +111,40 @@ export const useSimulResultStore = defineStore('simulResults', {
     simulateCacheRead(sequence: string[], blockSize: number) {
       // TODO:
       // Execute the simulation here.
-      var blocks: string[][] = []; //[number in sequence][age]
+      // Additionals: you can use timeouts to slow down the operation
+      // making it very visual to the user what is happening.
+      // This is only an additional feature but not a requirement
       
       // Gives age to each of the numbers
       for(let i = 0; i < sequence.length; i++){
-        if(i == 0){
-          blocks[i][0] = sequence[i];
-          blocks[i][1] = i.toString();
-        }
-        else{
-          //check if the value exists in the sequence
-          for(let j = 0; j < blockSize; j++){
-            // number is in block
-            if(blocks[j][0] == sequence[i]){
-              blocks[j][1] = i.toString();
-              this.incrementHits();
-            }
-            // number isn't in block
-            else{
-              // if block isn't full
-              for(let k = 0; k < blockSize; k++){
-                if(blocks[j][0] == null){
-                  blocks[j][0] = sequence[i];
-                  blocks[j][1] = i.toString();
-                }
-                else{
-                  for(let l = 0; l < blockSize; l++){
-                    var age = i-4;
-                    if(blocks[j][1] == age.toString()){
-                      blocks[j][0] = sequence[i];
-                      blocks[j][1] = i.toString();
-                    }
-                  }
-                }
-              }
-              this.incrementMiss();
-            }
+        for(let j = 0; j < blockSize; j++){
+          // number is in cache
+          if(this.cache.blocksValue[j] == sequence[i]){
+            this.cache.blocksAge[j] = i;
+            this.incrementHits();
           }
-        }
+          else{
+            // first number in sequence
+            if(i == 0){
+              this.cache.blocksValue[i] = sequence[i];
+              this.cache.blocksAge[i] = i;
+            }  
+            // if block isn't occupied
+            else if(this.cache.blocksValue[j] == null){
+              this.cache.blocksValue[j] = sequence[i];
+              this.cache.blocksAge[j] = i;
+            }
+            // all blocks are full
+            else{
+              var age = i-4;
+              if(this.cache.blocksAge[j] == age){
+                this.cache.blocksValue[j] = sequence[i];
+                this.cache.blocksAge[j] = i;
+              }
+            }
+            this.incrementMiss();
+          }
+        } 
       }
     }
   },
