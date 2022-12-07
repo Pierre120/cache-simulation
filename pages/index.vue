@@ -12,8 +12,12 @@
             <button class="btn btn-primary">Start Simulation</button>
           </NuxtLink>
           <h6 class="py-6 italic text-xs">
-            Simulation by Group 3 - CSARCH2 (T1 AY2022-2023)
-          </h6>
+            Simulation by Group 3 - CSARCH2 (T1 AY2022-2023) <br/>
+            CRUZ, Airon John <br/>
+          HERNANDEZ, Pierre Vincent <br/>
+            LACSON, Katarina Louise <br/>
+            SOLIS, Frances Danielle 
+          </h6> 
         </div>
       </div>
     </div>
