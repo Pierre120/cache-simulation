@@ -28,6 +28,13 @@ export const useInputSeqStore = defineStore('inputSeqStore', {
     },
     isValidNumPass() {
       return this.pass >= 1;
-    }
+    },
+    cleanInputSeq() {
+      let dirty = this.values.indexOf("");
+      while(dirty > -1) {
+        this.values.splice(dirty, 1);
+        dirty = this.values.indexOf("");
+      }
+    },
   },
 });

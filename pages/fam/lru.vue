@@ -109,6 +109,9 @@
       return;
     }
 
+    // Clean input sequence
+    inputSeqStore.cleanInputSeq();
+
     // Initialize cache blocks
     simulStore.initCacheBlocks(specsStore.getCacheNumBlocks);
 
@@ -117,7 +120,11 @@
     simulState.$state.isSimulation = true;
 
     // perform the simulation
-    simulStore.simulateCacheRead(inputSeqStore.getValues, specsStore.getCacheNumBlocks);
+    simulStore.simulateCacheRead(
+      inputSeqStore.getValues,
+      inputSeqStore.getNumPass,
+      specsStore.getCacheNumBlocks
+    );
     // compute miss penalty
     simulStore.computeMissPenalty(
       specsStore.getBlockSize,
