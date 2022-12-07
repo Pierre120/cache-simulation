@@ -5,12 +5,14 @@
         <tr>
           <th>Block no.</th>
           <th>Data</th>
+          <th>Age</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(value, index) in cache.blocksValue" :key="index">
           <th>{{ index }}</th>
           <td>{{ cache.blocksValue[index] }}</td>
+          <td>{{ cache.blocksAge[index] }}</td>
         </tr>
       </tbody>
     </table>
