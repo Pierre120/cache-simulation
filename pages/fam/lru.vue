@@ -21,7 +21,7 @@
         <!-- Input sequence input form -->
         <form-inputsequence
           v-if="simulState.$state.isInputSequence"
-          v-model:sequence="inputSeqStore.$state.values"
+          v-model:sequence="inputSeqStore.$state.rawString"
           v-model:pass="inputSeqStore.$state.pass"
           :invalid-input="simulState.$state.isInvalidPass"
           @remove-alert="removeInvalidPassAlert"
@@ -43,13 +43,15 @@
         />
       </div>
     </div>
-    <p class="mt-4">
+    <!-- FOR DEBUGGING -->
+    <!-- <p class="mt-4">
       Block size: {{ specsStore.blockSize }} <br>
       Main Memory Size - Unit: {{ specsStore.mainMemory.size.value }} - {{ specsStore.mainMemory.size.unit }} <br>
       Main Memory Access Time: {{ specsStore.mainMemory.accessTime }} <br>
       Cache Size - Unit: {{ specsStore.cache.size.value }} - {{ specsStore.cache.size.unit }} <br>
       Cache Access Time: {{ specsStore.cache.accessTime }} <br>
       Read Mode: {{ specsStore.readMode }} <br>
+      Raw Input Sequence: {{ inputSeqStore.getRawString }} <br>
       Sequence: {{ inputSeqStore.getValuesAsString }} <br>
       Pass: {{ inputSeqStore.pass }} <br>
       Cache num blocks: {{ simulStore.getCacheBlockValues.length }} <br>
@@ -66,7 +68,7 @@
     <button @click="simulStore.incrementMiss" class="btn">Inc Cache Miss</button>
     <button @click="randPenalty" class="btn">Cache Miss Penalty</button>
     <button @click="randAvg" class="btn">Randomize Avg AT</button>
-    <button @click="randTotal" class="btn">Randomize Total AT</button>
+    <button @click="randTotal" class="btn">Randomize Total AT</button> -->
   </div>
 </template>
 
@@ -103,14 +105,15 @@
   };
 
   const simulate = () => {
+    // Initialize sequence
+    inputSeqStore.initSequence();
+    // Clean input sequence
+    inputSeqStore.cleanInputSeq();
     // pass value validation
-    simulState.$state.isInvalidPass = !inputSeqStore.isValidNumPass();
+    simulState.$state.isInvalidPass = !inputSeqStore.isValidInputSeq();
     if(simulState.getIsInvalidPass) {
       return;
     }
-
-    // Clean input sequence
-    inputSeqStore.cleanInputSeq();
 
     // Initialize cache blocks
     simulStore.initCacheBlocks(specsStore.getCacheNumBlocks);
