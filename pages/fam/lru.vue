@@ -132,7 +132,8 @@
     simulStore.computeTotalAccessTime(
       specsStore.getBlockSize,
       specsStore.getMainMemoryAccessTime,
-      specsStore.getCacheAccessTime
+      specsStore.getCacheAccessTime,
+      specsStore.getReadMode
     );
     // perform the simulation
     simulStore.simulateCacheRead(inputSeqStore.getValues, specsStore.getCacheNumBlocks);
