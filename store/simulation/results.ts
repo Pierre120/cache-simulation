@@ -90,7 +90,8 @@ export const useSimulResultStore = defineStore('simulResults', {
       // `this.avgAccessTime`. Add or remove params as needed.
       var d = this.cacheHits + this.cacheMiss;
       
-      this.avgAccessTime = this.cacheHits / d * cacheAT + this.cacheMiss / d * mmAT;
+      //this.avgAccessTime = this.cacheHits / d * cacheAT + this.cacheMiss / d * mmAT;
+      this.avgAccessTime = this.cacheHits / d * cacheAT + this.cacheMiss / d * this.missPenalty;
     },
     computeTotalAccessTime(
       blockSize: number,
